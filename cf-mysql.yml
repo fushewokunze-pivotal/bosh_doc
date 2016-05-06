@@ -1,0 +1,940 @@
+---
+stemcell_criteria:
+  os: ubuntu-trusty
+  version: '3146.10'
+  requires_cpi: false
+releases:
+- file: cf-mysql-26.tgz
+  name: cf-mysql
+  version: '26'
+  md5: 8d3500b71658b6aa7e4cbdf73f1bdda3
+- file: mysql-backup-1.17.0.tgz
+  name: mysql-backup
+  version: 1.17.0
+  md5: 3b841576b7389b1c9010b95a107a6dba
+- file: service-backup-9.tgz
+  name: service-backup
+  version: '9'
+  md5: 04eadd96ea1fc8de65ed4cf49f1ae642
+name: p-mysql
+product_version: 1.8.0-edge.4
+metadata_version: '1.5'
+target_installer_version: 1.4.0.0
+requires_product_versions:
+- name: cf
+  version: "~> 1.3"
+provides_product_versions:
+- name: p-mysql
+  version: 1.8.0-edge.4
+label: MySQL
+description: MySQL service for application development and testing
+icon_image: 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
+rank: 1
+post_deploy_errands:
+- name: broker-registrar
+- name: acceptance-tests
+pre_delete_errands:
+- name: broker-deregistrar
+form_types:
+- name: service_plan_collection
+  label: Service Plans
+  description: MySQL Service Plan Configuration
+  property_inputs:
+  - reference: ".properties.plan_collection"
+    label: Service Plans
+    description: Use Service Plans allow you to selectively offer different levels
+      of service to your users
+    property_inputs:
+    - reference: name
+      label: Service Plan name
+      description: Name of the Service Plan (must only contain lowercase letters,
+        numbers, hyphen(-), or underscore(_))
+    - reference: description
+      label: Description
+      description: Description of the Service Plan
+    - reference: max_storage_mb
+      label: Storage Quota
+      description: |
+        This value is the maximum storage on disk permitted per database. When this quota is exceeded, write permissions are revoked until storage utilization falls below the quota. Users can discover current storage utilization on the service dashboard.
+    - reference: max_user_connections
+      label: Concurrent Connections Quota
+      description: |
+        This value is the maximum number of concurrent connections per user. A unique user is created for each bound application. Connections are dropped when this quota is exceeded. The server maximum is 1500.
+    - reference: private
+      label: Not available by default
+      description: |
+        When this box is checked, an admin must enable access manually using the 'enable-service-access' command for each organization. If unchecked, all organizations have access to this service plan.
+- name: proxy
+  label: Proxy
+  description: This service provides a proxy tier that routes MySQL connections from
+    applications to healthy cluster nodes. Configure DNS or your load balancer to
+    point to multiple proxy instances for increased availability. TCP healthchecks
+    must be configured against port 1936.
+  verifiers:
+  - name: Verifiers::StaticIpsVerifier
+  property_inputs:
+  - reference: ".proxy.static_ips"
+    label: Proxy IPs
+    description: IPs should be comma delimited. The number of proxy instances to be
+      deployed can be configured on the Resource Config page. Missing IPs will be
+      automatically assigned by Operations Manager. Extra IPs will be ignored. IPs
+      must be in a network assigned to this product.
+  - reference: ".cf-mysql-broker.bind_hostname"
+    label: Binding Credentials Hostname
+    description: By default the IP address of the first proxy instance will be used
+      as the hostname in credentials delivered to bound applications. If you have
+      configured DNS and/or your own load balancer to point to proxy instances, enter
+      the FQDN or external IP here and it will be used as the hostname in bind credentials.
+      Previously bound applications must be rebound and restaged to receive new credentials.
+- name: database_config
+  label: Database Configuration
+  description: Customize Database Configuration
+  property_inputs:
+  - reference: ".mysql.skip_name_resolve"
+    label: Disable reverse DNS lookups
+    description: Only un-check when controlling access to the database from outside
+      of Cloud Foundry and limiting access by hostname.
+  - reference: ".mysql.roadmin_password"
+    label: Read-Only User Password
+    description: Enter a password to automatically provision a `roadmin` user with
+      access to read all databases in the system, but permission to write to none.
+      Leave blank to disable the read-only user.
+- name: backups
+  label: Configure Backups
+  description: Automated Database Backups
+  property_inputs:
+  - reference: ".properties.backup_options"
+    label: Backups
+    selector_property_inputs:
+    - reference: ".properties.backup_options.disable"
+      label: |
+        Disable Backups (Must also choose "No Backups" below, and set Backup Prepare Node Instances to 0 in the "Resource Config" pane at left.)
+    - reference: ".properties.backup_options.enable"
+      label: Enable Backups (Must also choose a destination below.)
+      property_inputs:
+      - reference: ".properties.backup_options.enable.cron_schedule"
+        label: Cron Schedule (See http://godoc.org/github.com/robfig/cron)
+        description: Specify when backups are to occur. Schedule uses the machine's
+          local time zone.
+      - reference: ".properties.backup_options.enable.ulimit"
+        label: Max number of DB files
+        description: Set this to a number comfortably larger than the maximum number
+          of files your deployment will support. Maximum is 1048576.
+  - reference: ".properties.backups"
+    label: Backup Destination
+    selector_property_inputs:
+    - reference: ".properties.backups.disable"
+      label: No Backups
+    - reference: ".properties.backups.enable"
+      label: Ceph or Amazon S3
+      property_inputs:
+      - reference: ".properties.backups.enable.endpoint_url"
+        label: S3 Endpoint URL
+        description: Specify the endpoint that matches the region the bucket is hosted
+          in. Defaults to https://s3.amazonaws.com for us-east-1 if no url is provided.
+      - reference: ".properties.backups.enable.bucket_name"
+        label: S3 Bucket Name
+        description: Do not include 's3://' prefix, trailing '/', or underscores.
+          The bucket will be created automatically if it does not already exist.
+      - reference: ".properties.backups.enable.bucket_path"
+        label: Bucket Path
+        description: Specify a folder within the bucket which will hold the backups.
+          Do not include a trailing slash.
+      - reference: ".properties.backups.enable.access_key_id"
+        label: AWS Access Key ID
+      - reference: ".properties.backups.enable.secret_access_key"
+        label: AWS Secret Access Key
+    - reference: ".properties.backups.scp"
+      label: SCP to a Remote Host
+      property_inputs:
+      - reference: ".properties.backups.scp.user"
+        label: Username
+      - reference: ".properties.backups.scp.server"
+        label: Hostname
+      - reference: ".properties.backups.scp.destination"
+        label: Destination Directory
+      - reference: ".properties.backups.scp.scp_key"
+        label: Private Key
+        description: Do not password protect
+      - reference: ".properties.backups.scp.port"
+        label: SCP Port
+        description: SCP uses the SSH protocol, so provide the TCP port that your
+          server uses for the SSH protocol.
+property_blueprints:
+- name: backup_options
+  type: selector
+  configurable: true
+  default: disable
+  option_templates:
+  - name: disable
+    select_value: disable
+    named_manifests:
+    - name: cron_schedule
+      manifest: {}
+    - name: ulimit
+      manifest: {}
+  - name: enable
+    select_value: enable
+    named_manifests:
+    - name: cron_schedule
+      manifest: "(( .properties.backup_options.enable.cron_schedule.value ))"
+    - name: ulimit
+      manifest: "(( .properties.backup_options.enable.ulimit.value ))"
+    property_blueprints:
+    - name: cron_schedule
+      type: string
+      configurable: true
+    - name: ulimit
+      type: integer
+      configurable: true
+      default: 65536
+      constraints:
+        min: 1024
+        max: 1048576
+- name: backups
+  type: selector
+  configurable: true
+  default: disable
+  option_templates:
+  - name: disable
+    select_value: disable
+    named_manifests:
+    - name: backup_destination
+      manifest: {}
+  - name: enable
+    select_value: enable
+    named_manifests:
+    - name: backup_destination
+      manifest: |
+        s3:
+          endpoint_url: (( .properties.backups.enable.endpoint_url.value ))
+          bucket_name: (( .properties.backups.enable.bucket_name.value ))
+          bucket_path: (( .properties.backups.enable.bucket_path.value ))
+          access_key_id: (( .properties.backups.enable.access_key_id.value ))
+          secret_access_key: (( .properties.backups.enable.secret_access_key.value ))
+    property_blueprints:
+    - name: endpoint_url
+      type: string
+      configurable: true
+      optional: true
+    - name: bucket_name
+      type: string
+      configurable: true
+    - name: bucket_path
+      type: string
+      configurable: true
+    - name: access_key_id
+      type: string
+      configurable: true
+    - name: secret_access_key
+      type: secret
+      configurable: true
+  - name: scp
+    select_value: scp
+    named_manifests:
+    - name: backup_destination
+      manifest: |
+        scp:
+          user: (( .properties.backups.scp.user.value ))
+          server: (( .properties.backups.scp.server.value ))
+          destination: (( .properties.backups.scp.destination.value ))
+          key: (( .properties.backups.scp.scp_key.value ))
+          port: (( .properties.backups.scp.port.value ))
+    property_blueprints:
+    - name: user
+      type: string
+      configurable: true
+    - name: server
+      type: string
+      configurable: true
+    - name: destination
+      type: string
+      configurable: true
+    - name: scp_key
+      type: text
+      configurable: true
+    - name: port
+      type: integer
+      configurable: true
+      optional: true
+      default: 22
+- name: plan_collection
+  type: collection
+  configurable: true
+  optional: false
+  default:
+  - name: 100mb
+    description: 100MB default
+    max_storage_mb: 100
+    max_user_connections: 40
+    private: false
+  property_blueprints:
+  - name: name
+    type: string
+  - name: description
+    type: string
+  - name: max_storage_mb
+    type: integer
+  - name: max_user_connections
+    type: integer
+  - name: private
+    type: boolean
+    default: false
+job_types:
+- name: mysql
+  resource_label: MySQL Server
+  templates:
+  - name: mysql
+    release: cf-mysql
+  - name: streaming-mysql-backup-tool
+    release: mysql-backup
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 8192
+    constraints:
+      min: 4096
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 30000
+    constraints:
+      min: 10000
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: true
+    default: 100000
+    constraints:
+      min: 10000
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 2
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 1
+  dynamic_ip: 0
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: true
+    default: 3
+    constraints:
+      min: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  - name: mysql_admin_password
+    type: simple_credentials
+    label: MySQL root password
+    default:
+      identity: root
+  - name: mysql_backup_server_credentials
+    type: simple_credentials
+    label: Backup Endpoint Credentials
+  - name: mysql_bootstrap_credentials
+    type: simple_credentials
+    label: Bootstrap Endpoint Credentials
+  - name: database_startup_timeout
+    type: integer
+    configurable: false
+    default: 600
+  - name: roadmin_password
+    type: secret
+    label: Read-Only User Password
+    optional: true
+    configurable: true
+  - name: skip_name_resolve
+    type: boolean
+    default: true
+    configurable: true
+  manifest: |
+    cf_mysql:
+      mysql:
+        admin_password: (( mysql_admin_password.password ))
+        roadmin_enabled: true
+        roadmin_password: (( roadmin_password.value ))
+        bootstrap_endpoint:
+          username: (( mysql_bootstrap_credentials.identity ))
+          password: (( mysql_bootstrap_credentials.password ))
+        cluster_ips: (( .mysql.ips ))
+        database_startup_timeout: (( database_startup_timeout.value ))
+        innodb_buffer_pool_size: 2147483648
+        skip_name_resolve: (( skip_name_resolve.value ))
+    network_name: default
+    syslog_aggregator:
+       address: (( ..cf.properties.syslog_host.value ))
+       port: (( ..cf.properties.syslog_port.value ))
+       transport: (( ..cf.properties.syslog_protocol.value ))
+
+    cf-mysql-backup:
+      endpoint_credentials:
+        username: (( mysql_backup_server_credentials.identity ))
+        password: (( mysql_backup_server_credentials.password ))
+        ulimit: (( .properties.backup_options.selected_option.parsed_manifest(ulimit) ))
+- name: backup-prepare
+  resource_label: Backup Prepare Node
+  templates:
+  - name: streaming-mysql-backup-client
+    release: mysql-backup
+  - name: service-backup
+    release: service-backup
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 200000
+    contraints:
+      min: 10000
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 1
+  dynamic_ip: 0
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: true
+    default: -1
+    constraints:
+      min: 0
+      max: 1
+  property_blueprints:
+  - name: backup_encryption_key
+    type: secret
+    label: Backup Symmetric Encryption Key
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  manifest: |
+    cf_mysql:
+      mysql:
+        cluster_ips: (( .mysql.ips ))
+    cf-mysql-backup:
+      endpoint_credentials:
+        username: (( .mysql.mysql_backup_server_credentials.identity ))
+        password: (( .mysql.mysql_backup_server_credentials.password ))
+      symmetric_key: (( backup_encryption_key.value ))
+    service-backup:
+      destination: (( .properties.backups.selected_option.parsed_manifest(backup_destination) ))
+      source_folder: /var/vcap/data/mysql-backups
+      source_executable: /var/vcap/jobs/streaming-mysql-backup-client/bin/client
+      cleanup_executable: /bin/bash -c /var/vcap/jobs/streaming-mysql-backup-client/bin/cleanup-directories
+      cron_schedule: (( .properties.backup_options.selected_option.parsed_manifest(cron_schedule) ))
+- name: proxy
+  resource_label: Proxy
+  templates:
+  - name: proxy
+    release: cf-mysql
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 10000
+    contraints:
+      min: 4096
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 1
+  dynamic_ip: 0
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: true
+    default: 2
+    constraints:
+      min: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  - name: dashboard_credentials
+    type: simple_credentials
+    label: Proxy Dashboard Credentials
+    default:
+      identity: admin
+  - name: static_ips
+    type: ip_ranges
+    configurable: true
+    optional: true
+  manifest: |
+    cf_mysql:
+      external_host: "p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+      mysql:
+        cluster_ips: (( .mysql.ips ))
+      proxy:
+        api_username: (( dashboard_credentials.identity ))
+        api_password: (( dashboard_credentials.password ))
+        proxy_ips: (( .proxy.ips ))
+    nats:
+      machines: (( ..cf.nats.ips ))
+      password: (( ..cf.nats.credentials.password ))
+      port: 4222
+      user: (( ..cf.nats.credentials.identity ))
+    network_name: default
+    syslog_aggregator:
+      address: (( ..cf.properties.syslog_host.value ))
+      port: (( ..cf.properties.syslog_port.value ))
+      transport: (( ..cf.properties.syslog_protocol.value ))
+- name: cf-mysql-broker
+  resource_label: Broker
+  templates:
+  - name: cf-mysql-broker
+    release: cf-mysql
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 1024
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 10000
+    constraints:
+      min: 4096
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: true
+    default: 2
+    constraints:
+      min: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  - name: broker_auth_credentials
+    type: simple_credentials
+    label: Basic Auth Credentials
+  - name: dashboard_client_credentials
+    type: simple_credentials
+    label: Dashboard Client Credentials
+    configurable: false
+    default:
+      identity: p-mysql
+  - name: broker_name
+    type: string
+    configurable: false
+    default: p-mysql
+  - name: cookie_secret
+    type: secret
+    label: Cookie Secret
+    configurable: false
+  - name: bind_hostname
+    type: domain
+    configurable: true
+    optional: true
+  manifest: |
+    cf:
+      api_url: "https://api.(( ..cf.cloud_controller.system_domain.value ))"
+      skip_ssl_validation: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf_mysql:
+      broker:
+        auth_username: (( broker_auth_credentials.identity ))
+        auth_password: (( broker_auth_credentials.password ))
+        cookie_secret: (( cookie_secret.value ))
+        services:
+        - name: (( broker_name.value ))
+          id: 5e5f56da-9b39-43a5-840c-682d5412020b
+          plan_updateable: true
+          description: MySQL databases on demand
+          tags:
+            - mysql
+            - relational
+          dashboard_client:
+            id: (( .cf-mysql-broker.dashboard_client_credentials.identity ))
+            secret: (( .cf-mysql-broker.dashboard_client_credentials.password ))
+            redirect_uri: "https://p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+          metadata:
+            displayName: "MySQL"
+            imageUrl: "data:image/png;base64,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"
+            longDescription: "Provisioning a service instance creates a MySQL database. Binding applications to the instance creates unique credentials for each application to access the database."
+            providerDisplayName: "Pivotal Software"
+            documentationUrl: "http://docs.pivotal.io/p-mysql"
+            supportUrl: "http://support.pivotal.io"
+          plans: (( .properties.plan_collection.value || [] ))
+        ssl_enabled: true
+      external_host: "p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+      host: (( bind_hostname.value || .proxy.first_ip ))
+      mysql:
+        admin_password: (( .mysql.mysql_admin_password.password ))
+        persistent_disk: (( .mysql.persistent_disk ))
+    nats:
+      user: (( ..cf.nats.credentials.identity ))
+      password: (( ..cf.nats.credentials.password ))
+      port: 4222
+      machines: (( ..cf.nats.ips ))
+    network_name: default
+    syslog_aggregator:
+      address: (( ..cf.properties.syslog_host.value ))
+      port: (( ..cf.properties.syslog_port.value ))
+      transport: (( ..cf.properties.syslog_protocol.value ))
+- name: broker-registrar
+  resource_label: Broker Registrar
+  templates:
+  - name: broker-registrar
+    release: cf-mysql
+  errand: true
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  manifest: |
+    cf:
+      api_url: "https://api.(( ..cf.cloud_controller.system_domain.value ))"
+      admin_username: (( ..cf.uaa.admin_credentials.identity ))
+      admin_password: (( ..cf.uaa.admin_credentials.password ))
+      skip_ssl_validation: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf_mysql:
+      broker:
+        auth_username: (( .cf-mysql-broker.broker_auth_credentials.identity ))
+        auth_password: (( .cf-mysql-broker.broker_auth_credentials.password ))
+        services:
+          - name: (( .cf-mysql-broker.broker_name.value ))
+            plans: (( .properties.plan_collection.value || [] ))
+      external_host: "p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+- name: broker-deregistrar
+  resource_label: Broker Deregistrar
+  templates:
+  - name: broker-deregistrar
+    release: cf-mysql
+  errand: true
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  manifest: |
+    cf:
+      api_url: "https://api.(( ..cf.cloud_controller.system_domain.value ))"
+      admin_username: (( ..cf.uaa.admin_credentials.identity ))
+      admin_password: (( ..cf.uaa.admin_credentials.password ))
+      skip_ssl_validation: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf_mysql:
+      broker:
+        services:
+          - name: (( .cf-mysql-broker.broker_name.value ))
+- name: acceptance-tests
+  resource_label: Smoke Tests
+  templates:
+  - name: acceptance-tests
+    release: cf-mysql
+  errand: true
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  manifest: |
+    cf:
+      api_url: "https://api.(( ..cf.cloud_controller.system_domain.value ))"
+      admin_username: (( ..cf.uaa.system_verification_credentials.identity ))
+      admin_password: (( ..cf.uaa.system_verification_credentials.password ))
+      app_domains:
+        - (( ..cf.cloud_controller.apps_domain.value ))
+      skip_ssl_validation: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf_mysql:
+      broker:
+        services:
+          - name: (( .cf-mysql-broker.broker_name.value ))
+            plans: (( .properties.plan_collection.value || [] ))
+      external_host: "p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+      host:  "p-mysql.(( ..cf.cloud_controller.system_domain.value ))"
+      mysql:
+        admin_password: (( .mysql.mysql_admin_password.password ))
+      proxy:
+        api_username: (( .proxy.dashboard_credentials.identity ))
+        api_password: (( .proxy.dashboard_credentials.password ))
+        proxy_ips: (( .proxy.ips ))
+- name: bootstrap
+  resource_label: Bootstrap
+  templates:
+  - name: bootstrap
+    release: cf-mysql
+  errand: true
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 2048
+    constraints:
+      min: 1024
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    label: VM credentials
+    default:
+      identity: vcap
+  manifest: |
+    cf_mysql:
+      mysql:
+        bootstrap_endpoint:
+          username: (( .mysql.mysql_bootstrap_credentials.identity ))
+          password: (( .mysql.mysql_bootstrap_credentials.password ))
+        cluster_ips: (( .mysql.ips ))
+        database_startup_timeout: (( .mysql.database_startup_timeout.value ))
+- name: compilation
+  resource_label: Compilation
+  max_in_flight: 1
+  resource_definitions:
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 4096
+    constraints:
+      min: 4096
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 20480
+    constraints:
+      min: 16384
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 4
+    constraints:
+      min: 4
+      power_of_two: true
+  static_ip: 0
+  dynamic_ip: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    label: Instances
+    default: 1
+    configurable: true
+    constraints:
+      min: 1
